@@ -5,45 +5,73 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 var geometry = new THREE.SphereGeometry( 1, 18, 18 );
-var material = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
-var sphere1 = new THREE.Mesh( geometry, material );
-scene.add( sphere1 );
 
-var sphere1 = new THREE.Mesh( geometry, material );
+var electronGeometry = new THREE.SphereGeometry( .1, 18, 18 );
+
+var materialElectron = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+var materialProton = new THREE.MeshPhongMaterial( { color: 0xffffff } );
+var materialNeutron = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
+
+var sphere1 = new THREE.Mesh( geometry, materialProton );
 scene.add( sphere1 );
 sphere1.position.z=0;
 sphere1.position.x=1;
 sphere1.position.y=0;
 
-var sphere2 = new THREE.Mesh( geometry, material );
+var sphere2 = new THREE.Mesh( geometry, materialNeutron );
 scene.add( sphere2 );
 sphere2.position.z=0;
 sphere2.position.x=0;
 sphere2.position.y=0;
 
-var sphere3 = new THREE.Mesh( geometry, material );
+var sphere3 = new THREE.Mesh( geometry, materialProton );
 scene.add( sphere3 );
 sphere3.position.z=0;
 sphere3.position.x=0;
 sphere3.position.y=1;
 
-var sphere4 = new THREE.Mesh( geometry, material );
+var sphere4 = new THREE.Mesh( geometry, materialNeutron );
 sphere4.position.z=0;
 sphere4.position.x=1;
 sphere4.position.y=1;
 scene.add( sphere4 );
 
-var sphere5 = new THREE.Mesh( geometry, material );
+var sphere5 = new THREE.Mesh( geometry, materialProton );
 scene.add( sphere5 );
 sphere5.position.z=0.33;
 sphere5.position.x=0.33;
 sphere5.position.y=0.33;
 
-var sphere6 = new THREE.Mesh( geometry, material );
+var sphere6 = new THREE.Mesh( geometry, materialNeutron );
 scene.add( sphere6 );
 sphere6.position.z=-.33;
 sphere6.position.x=0.33;
 sphere6.position.y=0.33;
+
+
+var electron1 = new THREE.Mesh( electronGeometry, materialElectron );
+scene.add( electron1 );
+
+var electron2 = new THREE.Mesh( electronGeometry, materialElectron );
+scene.add( electron2 );
+
+var electron3 = new THREE.Mesh( electronGeometry, materialElectron );
+scene.add( electron3 );
+
+var electron4 = new THREE.Mesh( electronGeometry, materialElectron );
+scene.add( electron4 );
+
+var electron5 = new THREE.Mesh( electronGeometry, materialElectron );
+scene.add( electron5 );
+
+var electron6 = new THREE.Mesh( electronGeometry, materialElectron );
+scene.add( electron6 );
+
+var electron7 = new THREE.Mesh( electronGeometry, materialElectron );
+scene.add( electron7 );
+
+var electron8 = new THREE.Mesh( electronGeometry, materialElectron );
+scene.add( electron8 );
 
 camera.position.z = 5;
 camera.position.y= 0;
@@ -57,20 +85,34 @@ scene.add(light);
 scene.fog = new THREE.Fog(0xffffff, 0, 20000);
 renderer.setClearColor (scene.fog.color, 1);
 
+var t = 0;
 var animate = function () {
 	requestAnimationFrame( animate );
+    t += 0.01;
 
-	sphere1.rotation.x += 0.01;
-	sphere1.rotation.y += 0.01;
-  
-  sphere2.rotation.x += 0.01;
-	sphere2.rotation.y += 0.01;
-  
-  sphere3.rotation.x += 0.01;
-	sphere3.rotation.y += 0.01;
-  
-  sphere4.rotation.x += 0.01;
-	sphere4.rotation.y += 0.01;
+    electron1.position.x = 3*Math.cos(t);
+    electron1.position.z = 3*Math.sin(t);
+
+    electron2.position.x = 3*Math.cos(t);
+    electron2.position.y = 3*Math.sin(t);
+
+    electron3.position.y = 3*Math.cos(t);
+    electron3.position.z = 3*Math.sin(t);
+	
+	electron4.position.x = -3*Math.cos(t);
+    electron4.position.z = -3*Math.sin(t);
+
+    electron5.position.x = -3*Math.cos(t);
+    electron5.position.y = -3*Math.sin(t);
+
+    electron6.position.y = -3*Math.cos(t);
+	electron6.position.z = -3*Math.sin(t);
+	
+	electron7.position.x = 3*Math.cos(t);
+    electron7.position.y = 3*Math.sin(t);
+
+	electron8.position.x = 3*Math.cos(t);
+	electron8.position.y = 3*Math.sin(t);
 
 	renderer.render( scene, camera );
 };
