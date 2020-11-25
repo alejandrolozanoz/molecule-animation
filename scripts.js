@@ -130,13 +130,21 @@ light2.position.set( -8, -1, -4 );
 light2.castShadow = true;
 scene.add(light2);
 
-scene.fog = new THREE.Fog(0x000000, 0, 20000);
-renderer.setClearColor (scene.fog.color, 1);
-
 var t = 0;
 var t2 = 60;
 var t3 = 180;
 var t4 = 240;
+
+
+const loader = new THREE.TextureLoader();
+const texture = loader.load(
+  'https://i.imgur.com/dyf3Aof.jpg',
+  () => {
+	const rt = new THREE.WebGLCubeRenderTarget(texture.image.height);
+	rt.fromEquirectangularTexture(renderer, texture);
+	scene.background = rt;
+  });
+
 
 var animate = function () {
 	requestAnimationFrame( animate );
